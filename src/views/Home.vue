@@ -1,18 +1,30 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="flex-ccc">
+    F2E2021 前端＆UI設計之薪資統計分析
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
+  },
+  created() {
+    this.doAjax();
+  },
+  methods: {
+    doAjax() {
+      this.startLoading('loading message');
+
+      // simulate AJAX
+      setTimeout(() => {
+        this.endLoading();
+      }, 5000);
+    },
+    ...mapActions(['startLoading', 'endLoading']),
   },
 };
 </script>

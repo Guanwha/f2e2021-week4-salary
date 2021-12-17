@@ -1,0 +1,435 @@
+@tailwind utilities;
+@layer utilities {
+  @mixin hide-text {
+    text-indent: 110%;
+    // white-space: nowrap;
+    // overflow: hidden;
+  }
+
+  @mixin flex-r {
+    display: flex;
+    flex-direction: row;
+  }
+  @mixin flex-r-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  @mixin flex-c {
+    display: flex;
+    flex-direction: column;
+  }
+  @mixin flex-c-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  @mixin flex-rsac {
+    @include flex-r;
+    justify-content: space-around;
+    align-items: center;
+  }
+  @mixin flex-rsbt {
+    @include flex-r;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  @mixin flex-rsbc {
+    @include flex-r;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @mixin flex-rsbb {
+    @include flex-r;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  @mixin flex-rss {
+    @include flex-r;
+    justify-content: stretch;
+    align-items: stretch;
+  }
+  @mixin flex-rlt {
+    @include flex-r;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  @mixin flex-rlc {
+    @include flex-r;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  @mixin flex-rlb {
+    @include flex-r;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+  @mixin flex-rct {
+    @include flex-r;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  @mixin flex-rcc {
+    @include flex-r;
+    justify-content: center;
+    align-items: center;
+  }
+  @mixin flex-rrt {
+    @include flex-r;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  @mixin flex-rrc {
+    @include flex-r;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  @mixin flex-csac {
+    @include flex-c;
+    justify-content: space-around;
+    align-items: center;
+  }
+  @mixin flex-csbc {
+    @include flex-c;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @mixin flex-csbsb {
+    @include flex-c;
+    justify-content: space-between;
+    align-items: space-between;
+  }
+  @mixin flex-css {
+    @include flex-c;
+    justify-content: stretch;
+    align-items: stretch;
+  }
+  @mixin flex-ctl {
+    @include flex-c;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  @mixin flex-ctc {
+    @include flex-c;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  @mixin flex-ccl {
+    @include flex-c;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  @mixin flex-ccc {
+    @include flex-c;
+    justify-content: center;
+    align-items: center;
+  }
+  @mixin flex-ccc-reverse {
+    @include flex-c-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  @mixin flex-ccr {
+    @include flex-c;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  @mixin flex-ccs {
+    @include flex-c;
+    justify-content: center;
+    align-items: stretch;
+  }
+  @mixin flex-ctr {
+    @include flex-c;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+  @mixin flex-cbc {
+    @include flex-c;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .flex-rsac {
+    @include flex-rsac;
+  }
+  .flex-rsbt {
+    @include flex-rsbt;
+  }
+  .flex-rsbc {
+    @include flex-rsbc;
+  }
+  .flex-rsbb {
+    @include flex-rsbb;
+  }
+  .flex-rss {
+    @include flex-rss;
+  }
+  .flex-rlt {
+    @include flex-rlt;
+  }
+  .flex-rlc {
+    @include flex-rlc;
+  }
+  .flex-rlb {
+    @include flex-rlb;
+  }
+  .flex-rct {
+    @include flex-rct;
+  }
+  .flex-rcc {
+    @include flex-rcc;
+  }
+  .flex-rrt {
+    @include flex-rrt;
+  }
+  .flex-rrc {
+    @include flex-rrc;
+  }
+
+  .flex-csac {
+    @include flex-csac;
+  }
+  .flex-csbc {
+    @include flex-csbc;
+  }
+  .flex-csbsb {
+    @include flex-csbsb;
+  }
+  .flex-css {
+    @include flex-css;
+  }
+  .flex-ctl {
+    @include flex-ctl;
+  }
+  .flex-ctc {
+    @include flex-ctc;
+  }
+  .flex-ccl {
+    @include flex-ccl;
+  }
+  .flex-ccc {
+    @include flex-ccc;
+  }
+  .flex-ccc-reverse {
+    @include flex-ccc-reverse;
+  }
+  .flex-ccr {
+    @include flex-ccr;
+  }
+  .flex-ccs {
+    @include flex-ccs;
+  }
+  .flex-ctr {
+    @include flex-ctr;
+  }
+  .flex-cbc {
+    @include flex-cbc;
+  }
+
+  .flex-r {
+    @include flex-r;
+  }
+  .flex-c {
+    @include flex-c;
+  }
+  .flex-r-reverse {
+    @include flex-r-reverse;
+  }
+  .flex-c-reverse {
+    @include flex-c-reverse;
+  }
+
+  .grow-1 {
+    flex-grow: 1;
+  }
+  .grow-2 {
+    flex-grow: 2;
+  }
+  .grow-3 {
+    flex-grow: 3;
+  }
+
+
+  // margin
+  // padding
+
+  // width
+  .w-10p {
+    width: 10%;
+  }
+  .w-20p {
+    width: 20%;
+  }
+  .w-30p {
+    width: 30%;
+  }
+  .w-40p {
+    width: 40%;
+  }
+  .w-50p {
+    width: 50%;
+  }
+  .w-60p {
+    width: 60%;
+  }
+  .w-70p {
+    width: 70%;
+  }
+  .w-80p {
+    width: 80%;
+  }
+  .w-90p {
+    width: 90%;
+  }
+  .w-100p {
+    width: 100%;
+  }
+  .max-w-90p {
+    max-width: 90%;
+  }
+  .max-w-10r {
+    max-width: 10rem;
+  }
+  @mixin max-w-48r {  // 768px (assume 1rem == 16px)
+    max-width: 48rem;
+  }
+  .max-w-48r {
+    @include max-w-48r;
+  }
+  .max-w-60r {
+    max-width: 60rem; // 960px (assume 1rem == 16px)
+  }
+  .max-w-75r {
+    max-width: 75rem; // 1200px (assume 1rem == 16px)
+  }
+  .min-w-18r {
+    min-width: 18rem;
+  }
+  @mixin min-w-48r {  // 768px (assume 1rem == 16px)
+    min-width: 48rem;
+  }
+  .min-w-48r {
+    @include min-w-48r;
+  }
+  .min-w-50r {
+    min-width: 50rem; // 800px (assume 1rem == 16px)
+  }
+
+  // height
+  .h-30p {
+    height: 30%;
+  }
+  .h-40p {
+    height: 40%;
+  }
+  .max-h-30p {
+    max-height: 30%;
+  }
+  .max-h-40p {
+    max-height: 40%;
+  }
+
+  // position
+  .absolute-center {
+    @apply absolute;
+    @apply top-1/2;
+    @apply left-1/2;
+    @apply transform;
+    @apply -translate-x-1/2;
+    @apply -translate-y-1/2;
+  }
+  .absolute-hcenter {
+    @apply absolute;
+    @apply left-1/2;
+    @apply transform;
+    @apply -translate-x-1/2;
+  }
+  .absolute-vcenter {
+    @apply absolute;
+    @apply top-1/2;
+    @apply transform;
+    @apply -translate-y-1/2;
+  }
+
+  // for <a>
+  a.disabled {
+    // pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  // for text
+  .text-shadow-white {
+    filter: drop-shadow(0 0 0.05rem white);
+  }
+  .text-shadow-black {
+    filter: drop-shadow(0 0 0.05rem black);
+  }
+  // .text-shadow-primary {
+  //   filter: drop-shadow(0 0 0.05rem $primary);
+  // }
+
+  // for tooltip (up)
+  // using example:
+  //   <div class="has-tooltip">
+  //     <span class="tooltip-up">...</span>
+  //   </div>
+  .has-tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .has-tooltip .tooltip-up {
+    visibility: hidden;
+    width: 12rem;
+    background-color: #faf089;
+    color: #a0aec0;
+    font-size: .875rem;
+    text-align: left;
+    border-radius: 0.5rem;
+    padding: 0.6rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -6rem;
+  }
+
+  .has-tooltip .tooltip-up::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -0.3rem;
+    border-width: 0.6rem 0.3rem;
+    border-style: solid;
+    border-color: #faf089 transparent transparent transparent;
+  }
+
+  .has-tooltip:hover .tooltip-up {
+    visibility: visible;
+  }
+
+
+  // scroll
+  .scrollbar-hide {
+    /* Firefox */
+    scrollbar-width: none;
+
+    /* Safari and Chrome */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  // pop-menu
+  .pop-menu-root {
+    &:hover > .pop-menu {
+      display: block;
+    }
+    .pop-menu {
+      position: absolute;
+      display: none;
+    }
+  }
+}

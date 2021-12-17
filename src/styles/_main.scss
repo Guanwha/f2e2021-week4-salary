@@ -1,0 +1,86 @@
+
+html, body {
+  @apply h-full;
+  @apply overflow-hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin btn-tw($bg, $color, $hover-bg, $hover-color) {
+  @apply cursor-pointer;
+  @apply #{$bg};
+  @apply #{$color};
+  @apply duration-300;
+  &:hover:not([disabled]) {
+    @apply #{$hover-bg};
+    @apply #{$hover-color};
+  }
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+@mixin btn-tw-switch-color($bg, $color, $hover-bg, $hover-color) {
+  @apply cursor-pointer;
+  @apply #{$bg};
+  @apply duration-300;
+  .normal {
+    display: block;
+    overflow: hidden;
+    @apply duration-300;
+    @apply #{$color};
+    @apply opacity-100;
+    @apply w-auto;
+    @apply h-auto;
+  }
+  .hover-text {
+    display: block;
+    overflow: hidden;
+    @apply duration-300;
+    @apply #{$hover-color};
+    @apply opacity-0;
+    @apply w-0;
+    @apply h-0;
+  }
+
+  &:hover:not([disabled]) {
+    @apply #{$hover-bg};
+    .normal {
+      @apply opacity-0;
+      @apply w-0;
+      @apply h-0;
+    }
+    .hover-text {
+      @apply opacity-100;
+      @apply w-auto;
+      @apply h-auto;
+    }
+  }
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+// .btn-main {
+//   @include btn-tw(#{'bg-main-500'}, #{'text-dark-900'}, #{'bg-dark-900'}, #{'text-main-500'});
+// }
+// .btn-dark {
+//   @include btn-tw(#{'bg-dark-900'}, #{'text-white'}, #{'bg-main-500'}, #{'text-dark-900'});
+// }
+// .btn-main-switch-color {
+//   @include btn-tw-switch-color(#{'bg-main-500'}, #{'text-dark-900'}, #{'bg-dark-900'}, #{'text-main-500'});
+// }
+// .btn-dark-switch-color {
+//   @include btn-tw-switch-color(#{'bg-dark-900'}, #{'text-white'}, #{'bg-main-500'}, #{'text-dark-900'});
+// }
+
+// .border-main {
+//   @apply border-2;
+//   @apply border-solid;
+//   @apply border-dark-900;
+//   @apply rounded-lg;
+// }
