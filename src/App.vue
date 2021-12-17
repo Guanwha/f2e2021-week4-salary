@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="w-full h-full min-w-80">
     <loading :active.sync="isLoading"
          :can-cancel="false"
          :is-full-page="true"
