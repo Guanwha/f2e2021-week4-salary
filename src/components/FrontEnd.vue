@@ -7,6 +7,12 @@
     <!-- control -->
     <div class="w-full flex-rrc">
       <button type="button" class="btn btn-main-outline border-main flex-ccc" @click="resetZoom()">重置縮放</button>
+      <Dropdown class="ml-2"
+                classPadding="px-4 py-3"
+                classBorder="border-main"
+                classBgTextColor="btn-main-outline"
+                direction="down"
+                v-model.number='selectedDataTypeID' :types='types'/>
     </div>
     <!-- chart -->
     <div class="mt-2 w-full h-96 bg-gray-50 shadow rounded p-4">
@@ -40,13 +46,22 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { chartJobTenureVSSalary } from '@/utils/chart';
+import Dropdown from '@/components/Dropdown.vue';
+import { JobTenureSalaryDataTypes } from '@/utils/enums';
 
 export default {
   name: 'FrontEnd',
+  components: {
+    Dropdown,
+  },
   data() {
     return {
       canvasDom: null,
       chart: null,
+
+      // dropdown
+      types: JobTenureSalaryDataTypes,
+      selectedDataTypeID: 1,
     };
   },
   created() {
