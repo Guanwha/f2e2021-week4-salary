@@ -7,8 +7,8 @@ module.exports = {
       sass: {
         prependData: `
           @import "@/styles/app.scss";
-        `
-      }
-    }
-  }
+        `,
+      },
+    },
+  },
 };
