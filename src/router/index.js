@@ -10,14 +10,6 @@ const routes = [
     name: 'Home',
     component: Home,
   },
-  {
-    path: '/frontend',
-    name: 'FrontEnd',
-    // route level code-splitting
-    // this generates a separate chunk (frontend.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "frontend" */ '@/views/FrontEnd.vue'),
-  },
 ];
 
 const router = new VueRouter({
