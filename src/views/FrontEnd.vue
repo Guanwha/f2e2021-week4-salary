@@ -1,7 +1,11 @@
 <template>
-  <div class="w-full h-full flex-ccc">
+  <div class="w-full h-full container mx-auto flex-ccc">
+    <!-- control -->
+    <div class="w-full flex-rrc">
+      <button type="button" class="btn btn-main-outline border-main flex-ccc" @click="resetZoom()">重置縮放</button>
+    </div>
     <!-- chart -->
-    <div class="w-4/5 h-96 bg-gray-50 shadow rounded p-4">
+    <div class="mt-2 w-full h-96 bg-gray-50 shadow rounded p-4">
       <div class="w-full h-full">
         <canvas id="myChart" class="w-full h-full"></canvas>
       </div>
@@ -54,6 +58,11 @@ export default {
     }).catch(() => {});
   },
   methods: {
+    resetZoom() {
+      /* eslint no-unused-expressions: ["off"] */
+      this.chart?.resetZoom();
+    },
+
     ...mapActions('salary', ['getData']),
   },
   computed: {

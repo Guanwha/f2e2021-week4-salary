@@ -1,6 +1,8 @@
 import Chart from 'chart.js/auto';
+import zoomPlugin from 'chartjs-plugin-zoom';
 import store from '@/store';
 
+Chart.register(zoomPlugin);
 const colors = ['#FCA5A5', '#FCD34D', '#6EE7B7', '#93C5FD', '#C4B5FD', '#F9A8D4', '#D1D5DB'];
 const borderColors = ['#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6', '#EC4899', '#6B7280'];
 
@@ -60,6 +62,20 @@ const chartJobTenureVSSalary = (dom, data) => {
             display: true,
             text: '年資 vs 年薪',
             aling: 'center',
+          },
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true,
+              },
+              drag: {
+                enabled: true,
+              },
+              mode: 'xy',
+            },
           },
         },
         onClick(e) {
