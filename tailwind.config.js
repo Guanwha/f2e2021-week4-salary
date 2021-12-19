@@ -28,14 +28,18 @@ module.exports = {
       purple: colors.violet,
       pink: colors.pink,
 
+      'main-600': '#A18000',
       'main-500': '#FFD95B',
+      'main-400': '#FFEAA3',
       'second-500': '#C1A4FF',
       'word-800': '#131414',
       'word-100': '#F5F5F5',
     },
     fill: {
       current: 'currentColor',
+      'main-600': '#A18000',
       'main-500': '#FFD95B',
+      'main-400': '#FFEAA3',
       'second-500': '#C1A4FF',
       'word-800': '#131414',
       'word-100': '#F5F5F5',

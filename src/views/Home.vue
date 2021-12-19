@@ -3,8 +3,8 @@
     <header>
       <div>2021 薪資統計分析</div>
       <ul>
-        <li>前端工程師</li>
-        <li>UI 設計師</li>
+        <li @click="changeTab('frontend')" :class="(isFrontEndTab) ? 'active' : ''">前端工程師</li>
+        <li @click="changeTab('ui')" :class="(isUITab) ? 'active' : ''">UI 設計師</li>
       </ul>
     </header>
     <section>
@@ -24,6 +24,11 @@ export default {
   components: {
     FrontEnd,
   },
+  data() {
+    return {
+      curTab: 'frontend',   // frontend, ui
+    };
+  },
   created() {
     this.doAjax();
   },
@@ -36,7 +41,17 @@ export default {
         this.endLoading();
       }, 5000);
     },
+    changeTab(tab) {
+      if (this.curTab !== tab) {
+        this.curTab = tab;
+        // [UPDATE PAGE]
+      }
+    },
     ...mapActions(['startLoading', 'endLoading']),
+  },
+  computed: {
+    isFrontEndTab() { return (this.curTab === 'frontend'); },
+    isUITab() { return (this.curTab === 'ui'); },
   },
 };
 </script>
@@ -48,17 +63,25 @@ header {
   @apply bg-main-500;
   @apply text-word-800;
   @apply text-xl font-bold;
+  @apply shadow;
   @apply flex-rlc;
   ul {
     @apply ml-8;
     @apply flex-rlc;
+    @apply gap-1;
   }
   li {
-    @apply p-2;
+    @apply px-4 py-3;
+    @apply rounded;
+    @apply hover:bg-main-400;
     @apply text-base;
     @apply font-normal;
+    @apply leading-none;
+    @apply duration-500;
     @apply cursor-pointer;
-    @apply hover:bg-second-500;
+  }
+  .active {
+    @apply bg-main-400;
   }
 }
 section {

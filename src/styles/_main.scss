@@ -11,8 +11,8 @@ html, body {
 
 
 @mixin btn() {
-  @apply px-8;
-  @apply py-4;
+  @apply px-6;
+  @apply py-3;
   @apply leading-none;
   @apply text-base;
   transition: all .15s ease;
@@ -79,7 +79,7 @@ html, body {
 }
 
 .btn-main {
-  @include btn-tw(#{'bg-main-500'}, #{'text-word-800'}, #{'bg-second-500'}, #{'text-word-800'});
+  @include btn-tw(#{'bg-main-500'}, #{'text-word-800'}, #{'bg-main-400'}, #{'text-word-800'});
 }
 // .btn-dark {
 //   @include btn-tw(#{'bg-dark-900'}, #{'text-white'}, #{'bg-main-500'}, #{'text-dark-900'});
@@ -93,12 +93,12 @@ html, body {
 
 
 .btn-main-outline {
-  @include btn-tw(#{'bg-white'}, #{'text-word-800'}, #{'bg-second-500'}, #{'text-word-800'});
+  @include btn-tw(#{'bg-white'}, #{'text-main-600'}, #{'bg-main-400'}, #{'text-main-600'});
 }
 
 .border-main {
   @apply border;
   @apply border-solid;
-  @apply border-main-500;
+  @apply border-main-600;
   @apply rounded;
 }

@@ -1,5 +1,9 @@
 <template>
-  <div class="w-full h-full container mx-auto flex-ccc">
+  <div class="w-full h-full container mx-auto flex-ctc">
+    <!-- title -->
+    <h1 class="w-full mt-8 py-4 font-bold text-2xl text-left">年資 vs 年薪</h1>
+    <!-- description -->
+    <p class="w-full text-left">檢視在不同的年齡、性別、學歷、產業下，前端工程師年資與年薪的關係。</p>
     <!-- control -->
     <div class="w-full flex-rrc">
       <button type="button" class="btn btn-main-outline border-main flex-ccc" @click="resetZoom()">重置縮放</button>
