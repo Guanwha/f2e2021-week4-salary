@@ -30,35 +30,36 @@ const genJobTenureVSSalaryChartData = (json) => {
   // const jobTenuresCollection = {};
   json.forEach((info) => {
     // each user info
-    if (info && info.age && info.company && info.company.job_tenure && info.company.salary) {
-      // get data type statistic
-      // jobTenuresCollection[info.company.job_tenure] = (jobTenuresCollection[info.company.job_tenure]) ? jobTenuresCollection[info.company.job_tenure] + 1 : 1;
+    if (info && info.company && info.company.job_tenure && info.company.salary) {
+      // jobTenuresCollection[info.gender] = (jobTenuresCollection[info.gender]) ? jobTenuresCollection[info.gender] + 1 : 1;
 
-      // collect data of the same job-tenure & salary & age for bubble chart
-      const jobTenure = JobTenures[info.company.job_tenure];
-      const salary = Salaries[info.company.salary];
-      const curAgeChartData = chartData[info.age];
-      let isNewXYCategory = true;
-      curAgeChartData.forEach((data, idx) => {
+      // age
+      if (info.age) {
+        // get data type statistic
+
+        // collect data of the same job-tenure & salary & age for bubble chart
+        const jobTenure = JobTenures[info.company.job_tenure];  // x
+        const salary = Salaries[info.company.salary];           // y
+        const curAgeChartData = chartData[info.age];            // dataset
+        let isNewXYCategory = true;
         // find the exist job-tenure & salary category
-        if (data.x === jobTenure && data.y === salary) {
-          curAgeChartData[idx].r += 1;
-          curAgeChartData[idx].d.push(info);    // collect data
-          isNewXYCategory = false;
+        curAgeChartData.forEach((data, idx) => {
+          if (data.x === jobTenure && data.y === salary) {
+            curAgeChartData[idx].r += 1;
+            curAgeChartData[idx].d.push(info);    // collect data
+            isNewXYCategory = false;
+          }
+        });
+        if (isNewXYCategory) {
+          const data = {
+            x: JobTenures[info.company.job_tenure],
+            y: Salaries[info.company.salary],
+            r: 1,
+            d: [info],
+          };
+          chartData[info.age].push(data);         // start to collect 1st data
         }
-      });
-      if (isNewXYCategory) {
-        const data = {
-          x: JobTenures[info.company.job_tenure],
-          y: Salaries[info.company.salary],
-          r: 1,
-          d: [info],
-        };
-        chartData[info.age].push(data);         // collect data
       }
-    }
-    else {
-      // skip += 1;
     }
   });
   // console.log(jobTenuresCollection);
