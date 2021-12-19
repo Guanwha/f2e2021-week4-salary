@@ -1,4 +1,4 @@
-import { jobTenures, salaries } from '@/utils/enums';
+import { JobTenures, Salaries } from '@/utils/enums';
 
 const genJobTenureVSSalaryChartData = (json) => {
   // let skip = 0;
@@ -35,8 +35,8 @@ const genJobTenureVSSalaryChartData = (json) => {
       // jobTenuresCollection[info.company.job_tenure] = (jobTenuresCollection[info.company.job_tenure]) ? jobTenuresCollection[info.company.job_tenure] + 1 : 1;
 
       // collect data of the same job-tenure & salary & age for bubble chart
-      const jobTenure = jobTenures[info.company.job_tenure];
-      const salary = salaries[info.company.salary];
+      const jobTenure = JobTenures[info.company.job_tenure];
+      const salary = Salaries[info.company.salary];
       const curAgeChartData = chartData[info.age];
       let isNewXYCategory = true;
       curAgeChartData.forEach((data, idx) => {
@@ -49,8 +49,8 @@ const genJobTenureVSSalaryChartData = (json) => {
       });
       if (isNewXYCategory) {
         const data = {
-          x: jobTenures[info.company.job_tenure],
-          y: salaries[info.company.salary],
+          x: JobTenures[info.company.job_tenure],
+          y: Salaries[info.company.salary],
           r: 1,
           d: [info],
         };

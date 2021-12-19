@@ -1,5 +1,5 @@
 // 年資
-export const jobTenures = {
+export const JobTenures = {
   '1 年以下': 1,
   '1~2 年': 1.5,
   '2~3 年': 3.5,
@@ -10,7 +10,7 @@ export const jobTenures = {
 };
 
 // 年薪
-export const salaries = {
+export const Salaries = {
   '36 萬以下': 36,
   '36~50 萬': 43,
   '51~60 萬': 55,
