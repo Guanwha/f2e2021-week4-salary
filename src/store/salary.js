@@ -1,6 +1,6 @@
-// import Axios from 'axios';
-// import { log, logCatch } from '@/utils/message';
-// import { axiosThen } from '@/utils/net';
+import Axios from 'axios';
+import { log, logCatch } from '@/utils/message';
+import { axiosThen } from '@/utils/net';
 // import { checkToken, hasToken } from '@/js/utils/auth';
 // import { check } from '@/js/utils/file';
 import * as types from './types';
@@ -27,56 +27,65 @@ export default {
   actions: {
     getData(context, job) {
       return new Promise((resolve, reject) => {
-        // const config = {
-        //   method: 'get',
-        //   url: 'https://raw.githubusercontent.com/hexschool/2021-ui-frontend-job/master/frontend_data.json',
-        // };
+        const config = {
+          method: 'get',
+          url: (job === 'frontend')
+            ? 'https://raw.githubusercontent.com/hexschool/2021-ui-frontend-job/master/frontend_data.json'
+            : 'https://raw.githubusercontent.com/hexschool/2021-ui-frontend-job/master/ui_data.json',
+        };
 
-        // context.dispatch('startLoading', '取得前端工程師薪水統計中...', { root: true });
-        // Axios(config).then((response) => {
-        //   // console.log('frontend api', response);
-        //   axiosThen(response, () => {
-        //     // success
-        //     log('取得前端工程師薪水統計成功');
-        //     const payload = genJobTenureSalaryChartData(jsonFE);
-        //     context.commit(types.salary.SET_FE_SALARY, payload);
-        //     resolve();
-        //   }, () => {
-        //     // failure
-        //     log(`取得前端工程師薪水統計失敗: ${response.data.message}`, true, false, false, true);
-        //     reject();
-        //   }, () => {
-        //     // no response
-        //     log('取得前端工程師薪水統計失敗: 未收到伺服器回應。', true, false, false, true);
-        //     reject();
-        //   });
-        // }).catch((error) => {
-        //   logCatch('取得前端工程師薪水統計失敗: ', error);
-        //   reject();
-        // }).finally(() => {
-        //   context.dispatch('endLoading', null, { root: true });
-        // });
-
-        let payload = null;
-        try {
-          if (job === 'frontend') {
-            payload = genJobTenureSalaryChartData(jsonFE);
-            context.commit(types.salary.SET_FE_SALARY, payload);
-          }
-          else {
-            payload = genJobTenureSalaryChartData(jsonUI);
-            context.commit(types.salary.SET_UI_SALARY, payload);
-          }
-          resolve();
-        }
-        catch (error) {
-          // logCatch('發生錯誤: ', error.getMessage());
-          console.log(error);
+        context.dispatch('startLoading', '取得前端工程師薪水統計中...', { root: true });
+        Axios(config).then((response) => {
+          // console.log('frontend api', response);
+          axiosThen(response, () => {
+            // success
+            let payload = null;
+            if (job === 'frontend') {
+              payload = genJobTenureSalaryChartData(jsonFE);
+              context.commit(types.salary.SET_FE_SALARY, payload);
+            }
+            else {
+              payload = genJobTenureSalaryChartData(jsonUI);
+              context.commit(types.salary.SET_UI_SALARY, payload);
+            }
+            log('取得前端工程師薪水統計成功');
+            resolve();
+          }, () => {
+            // failure
+            log(`取得前端工程師薪水統計失敗: ${response.data.message}`, true, false, false, true);
+            reject();
+          }, () => {
+            // no response
+            log('取得前端工程師薪水統計失敗: 未收到伺服器回應。', true, false, false, true);
+            reject();
+          });
+        }).catch((error) => {
+          logCatch('取得前端工程師薪水統計失敗: ', error);
           reject();
-        }
-        finally {
+        }).finally(() => {
           context.dispatch('endLoading', null, { root: true });
-        }
+        });
+
+        // let payload = null;
+        // try {
+        //   if (job === 'frontend') {
+        //     payload = genJobTenureSalaryChartData(jsonFE);
+        //     context.commit(types.salary.SET_FE_SALARY, payload);
+        //   }
+        //   else {
+        //     payload = genJobTenureSalaryChartData(jsonUI);
+        //     context.commit(types.salary.SET_UI_SALARY, payload);
+        //   }
+        //   resolve();
+        // }
+        // catch (error) {
+        //   // logCatch('發生錯誤: ', error.getMessage());
+        //   console.log(error);
+        //   reject();
+        // }
+        // finally {
+        //   context.dispatch('endLoading', null, { root: true });
+        // }
       });
     },
     setSelectedInfo(context, payload) {
