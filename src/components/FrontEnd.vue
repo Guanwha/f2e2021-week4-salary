@@ -44,10 +44,11 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import { mapActions, mapGetters } from 'vuex';
-import { chartJobTenureVSSalary } from '@/utils/chart';
+import { chartJobTenureVSSalary, updateDatasets } from '@/utils/chart';
 import Dropdown from '@/components/Dropdown.vue';
-import { JobTenureSalaryDataTypes } from '@/utils/enums';
+import { JobTenureSalaryDataTypesDD, JobTenureSalaryDataTypes } from '@/utils/enums';
 
 export default {
   name: 'FrontEnd',
@@ -60,32 +61,48 @@ export default {
       chart: null,
 
       // dropdown
-      types: JobTenureSalaryDataTypes,
+      types: JobTenureSalaryDataTypesDD,
       selectedDataTypeID: 1,
     };
+  },
+  watch: {
+    selectedDataTypeID() {
+      this.debouncedRedrawChart();
+    },
   },
   created() {
     this.getData().then(() => {
       this.canvasDom = document.getElementById('myChart');
-      // // Make it visually fill the positioned parent
-      // this.canvasDom.style.width = '100%';
-      // this.canvasDom.style.height = '100%';
-      // // ...then set the internal size to match
-      // this.canvasDom.width = this.canvasDom.offsetWidth;
-      // this.canvasDom.height = this.canvasDom.offsetHeight;
-      this.chart = chartJobTenureVSSalary(this.canvasDom, this.frontendSalaries);
+      this.chart = chartJobTenureVSSalary(this.canvasDom, this.curDatasets);
+
+      this.debouncedRedrawChart = _.debounce(this.redrawChart, 300);
     }).catch(() => {});
   },
   methods: {
+    /**
+     * control
+     */
     resetZoom() {
       /* eslint no-unused-expressions: ["off"] */
       this.chart?.resetZoom();
+    },
+    redrawChart() {
+      this.chart.data.datasets = updateDatasets(this.curDatasets);
+      this.chart.update();
     },
 
     ...mapActions('salary', ['getData']),
   },
   computed: {
-    ...mapGetters('salary', ['frontendSalaries', 'selectedInfo']),
+    curDatasets() {
+      switch (this.selectedDataTypeID) {
+        case JobTenureSalaryDataTypes.AGE: return this.frontendSalariesForAge;
+        case JobTenureSalaryDataTypes.GENDER: return this.frontendSalariesForGender;
+        default: return {};
+      }
+    },
+
+    ...mapGetters('salary', ['frontendSalariesForAge', 'frontendSalariesForGender', 'selectedInfo']),
   },
 };
 </script>

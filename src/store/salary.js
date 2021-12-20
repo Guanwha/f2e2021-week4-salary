@@ -5,7 +5,7 @@
 // import { checkToken, hasToken } from '@/js/utils/auth';
 // import { check } from '@/js/utils/file';
 import * as types from './types';
-import { genJobTenureVSSalaryChartData } from '@/utils/gen-chart-data';
+import { genJobTenureSalaryChartData } from '@/utils/gen-chart-data';
 
 const jsonFE = require('@/utils/data-frontend.json');
 // const jsonUI = require('@/utils/data-ui.json');
@@ -15,7 +15,8 @@ export default {
   strict: true,         // option 嚴格模式
   namespaced: true,     // option
   state: {
-    frontend_salaries: {},
+    frontend_jobtenure_salary_age: {},
+    frontend_jobtenure_salary_gender: {},
     selected_info: {},
   },
   actions: {
@@ -23,8 +24,8 @@ export default {
       return new Promise((resolve, reject) => {
         // console.log(jsonFE);
         try {
-          const data = genJobTenureVSSalaryChartData(jsonFE);
-          context.commit(types.salary.SET_FE_SALARY, data);
+          const payload = genJobTenureSalaryChartData(jsonFE);
+          context.commit(types.salary.SET_FE_SALARY, payload);
           resolve();
         }
         catch (error) {
@@ -42,15 +43,17 @@ export default {
     },
   },
   mutations: {
-    [types.salary.SET_FE_SALARY](state, data) {
-      state.frontend_salaries = { ...data };
+    [types.salary.SET_FE_SALARY](state, payload) {
+      state.frontend_jobtenure_salary_age = { ...payload.age };
+      state.frontend_jobtenure_salary_gender = { ...payload.gender };
     },
     [types.salary.SET_SELECTED_INFO](state, payload) {
       state.selected_info = { ...payload };
     },
   },
   getters: {
-    frontendSalaries(state) { return state.frontend_salaries; },
+    frontendSalariesForAge(state) { return state.frontend_jobtenure_salary_age; },
+    frontendSalariesForGender(state) { return state.frontend_jobtenure_salary_gender; },
     selectedInfo(state) { return state.selected_info; },
   },
 };

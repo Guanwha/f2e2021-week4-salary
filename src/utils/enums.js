@@ -32,10 +32,16 @@ export const Salaries = {
   '400 萬以上': 400,
 };
 
-// 圖表下拉選單
-export const JobTenureSalaryDataTypes = {
+// 圖表種類
+export const JobTenureSalaryDataTypesDD = {
   1: { name: '年齡' },
   2: { name: '性別' },
   3: { name: '學歷' },
   4: { name: '產業' },
+};
+export const JobTenureSalaryDataTypes = {
+  AGE: 1,
+  GENDER: 2,
+  EDUCATION: 3,
+  INDUSTRY: 4,
 };

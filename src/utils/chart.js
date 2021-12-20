@@ -6,18 +6,18 @@ Chart.register(zoomPlugin);
 const colors = ['#FCA5A5', '#FCD34D', '#6EE7B7', '#93C5FD', '#C4B5FD', '#F9A8D4', '#D1D5DB'];
 const borderColors = ['#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6', '#EC4899', '#6B7280'];
 
-const chartJobTenureVSSalary = (dom, data) => {
+const chartJobTenureVSSalary = (dom, datasets) => {
   // initialize chart datasets & give a style
   const chartData = {
     datasets: [],
   };
-  const ages = Object.keys(data);
-  ages.forEach((age, idx) => {
+  const datasetsKeys = Object.keys(datasets);
+  datasetsKeys.forEach((key, idx) => {
     chartData.datasets.push({
-      label: age,
+      label: key,
       backgroundColor: colors[idx % (colors.length)],
       borderColor: borderColors[idx % (colors.length)],
-      data: data[age],
+      data: datasets[key],
       // cubicInterpolationMode: 'monotone',
       // tension: 0.4,
     });
@@ -86,9 +86,9 @@ const chartJobTenureVSSalary = (dom, data) => {
           activePoints.forEach((activePoint) => {
             const idxDataset = activePoint.datasetIndex;
             const idxData = activePoint.index;
-            selectedInfo[ages[idxDataset]] = {};
-            selectedInfo[ages[idxDataset]].options = { color: colors[idxDataset], borderColor: borderColors[idxDataset] };
-            selectedInfo[ages[idxDataset]].data = data[ages[idxDataset]][idxData].d;
+            selectedInfo[datasetsKeys[idxDataset]] = {};
+            selectedInfo[datasetsKeys[idxDataset]].options = { color: colors[idxDataset], borderColor: borderColors[idxDataset] };
+            selectedInfo[datasetsKeys[idxDataset]].data = datasets[datasetsKeys[idxDataset]][idxData].d;
           });
           store.dispatch('salary/setSelectedInfo', selectedInfo);
         },
@@ -98,8 +98,26 @@ const chartJobTenureVSSalary = (dom, data) => {
   return chart;
 };
 
-const temp = {};
+const updateDatasets = (newDatasets) => {
+  // initialize chart datasets & give a style
+  const chartData = {
+    datasets: [],
+  };
+  const datasetsKeys = Object.keys(newDatasets);
+  datasetsKeys.forEach((key, idx) => {
+    chartData.datasets.push({
+      label: key,
+      backgroundColor: colors[idx % (colors.length)],
+      borderColor: borderColors[idx % (colors.length)],
+      data: newDatasets[key],
+      // cubicInterpolationMode: 'monotone',
+      // tension: 0.4,
+    });
+  });
+
+  return chartData.datasets;
+};
 
 export {
-  chartJobTenureVSSalary, temp,
+  chartJobTenureVSSalary, updateDatasets,
 };

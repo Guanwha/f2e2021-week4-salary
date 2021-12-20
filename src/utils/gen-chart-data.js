@@ -1,6 +1,6 @@
 import { JobTenures, Salaries } from '@/utils/enums';
 
-const genJobTenureVSSalaryChartData = (json) => {
+const genJobTenureSalaryChartData = (json) => {
   // let skip = 0;
   /**
    * charData structure
@@ -19,13 +19,17 @@ const genJobTenureVSSalaryChartData = (json) => {
    *    ...
    *  }
    */
-  const chartData = {
+  const ageDatasets = {
     '21~25 歲': [],
     '26~30 歲': [],
     '31~35 歲': [],
     '36~40 歲': [],
     '41~45 歲': [],
     '46~50 歲': [],
+  };
+  const genderDatasets = {
+    男性: [],
+    女性: [],
   };
   // const jobTenuresCollection = {};
   json.forEach((info) => {
@@ -40,13 +44,13 @@ const genJobTenureVSSalaryChartData = (json) => {
         // collect data of the same job-tenure & salary & age for bubble chart
         const jobTenure = JobTenures[info.company.job_tenure];  // x
         const salary = Salaries[info.company.salary];           // y
-        const curAgeChartData = chartData[info.age];            // dataset
+        const curAgeDataset = ageDatasets[info.age];            // dataset
         let isNewXYCategory = true;
         // find the exist job-tenure & salary category
-        curAgeChartData.forEach((data, idx) => {
+        curAgeDataset.forEach((data, idx) => {
           if (data.x === jobTenure && data.y === salary) {
-            curAgeChartData[idx].r += 1;
-            curAgeChartData[idx].d.push(info);    // collect data
+            curAgeDataset[idx].r += 1;
+            curAgeDataset[idx].d.push(info);    // collect data
             isNewXYCategory = false;
           }
         });
@@ -57,18 +61,49 @@ const genJobTenureVSSalaryChartData = (json) => {
             r: 1,
             d: [info],
           };
-          chartData[info.age].push(data);         // start to collect 1st data
+          ageDatasets[info.age].push(data);         // start to collect 1st data
+        }
+      }
+
+      // gender
+      if (info.gender) {
+        // get data type statistic
+
+        // collect data of the same job-tenure & salary & gender for bubble chart
+        const jobTenure = JobTenures[info.company.job_tenure];    // x
+        const salary = Salaries[info.company.salary];             // y
+        const curGenderDataset = genderDatasets[info.gender];     // dataset
+        let isNewXYCategory = true;
+        // find the exist job-tenure & salary category
+        curGenderDataset.forEach((data, idx) => {
+          if (data.x === jobTenure && data.y === salary) {
+            curGenderDataset[idx].r += 1;
+            curGenderDataset[idx].d.push(info);           // collect data
+            isNewXYCategory = false;
+          }
+        });
+        if (isNewXYCategory) {
+          const data = {
+            x: JobTenures[info.company.job_tenure],
+            y: Salaries[info.company.salary],
+            r: 1,
+            d: [info],
+          };
+          genderDatasets[info.gender].push(data);         // start to collect 1st data
         }
       }
     }
   });
   // console.log(jobTenuresCollection);
 
-  return chartData;
+  return {
+    age: ageDatasets,
+    gender: genderDatasets,
+  };
 };
 
 const temp = {};
 
 export {
-  genJobTenureVSSalaryChartData, temp,
+  genJobTenureSalaryChartData, temp,
 };
