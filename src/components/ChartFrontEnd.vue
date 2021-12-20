@@ -51,7 +51,7 @@ import Dropdown from '@/components/Dropdown.vue';
 import { JobTenureSalaryDataTypesDD, JobTenureSalaryDataTypes } from '@/utils/enums';
 
 export default {
-  name: 'FrontEnd',
+  name: 'ChartFrontEnd',
   components: {
     Dropdown,
   },
