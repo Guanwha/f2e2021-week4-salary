@@ -6,6 +6,7 @@ const ui = {
 /** bus */
 const salary = {
   SET_FE_SALARY: 'SET_FE_SALARY',
+  SET_UI_SALARY: 'SET_UI_SALARY',
   SET_SELECTED_INFO: 'SET_SELECTED_INFO',
 };
 

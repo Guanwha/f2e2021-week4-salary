@@ -26,10 +26,13 @@ const genJobTenureSalaryChartData = (json) => {
     '36~40 歲': [],
     '41~45 歲': [],
     '46~50 歲': [],
+    '51 歲以上': [],
+    其他: [],
   };
   const genderDatasets = {
     男性: [],
     女性: [],
+    其他: [],
   };
   const educationDatasets = {
     高中畢業: [],
@@ -103,6 +106,9 @@ const genJobTenureSalaryChartData = (json) => {
   json.forEach((info) => {
     // each user info
     if (info && info.company && info.company.job_tenure && info.company.salary) {
+      // jobTenuresCollection[info.age] = (jobTenuresCollection[info.age]) ? jobTenuresCollection[info.age] + 1 : 1;
+      // jobTenuresCollection[info.gender] = (jobTenuresCollection[info.gender]) ? jobTenuresCollection[info.gender] + 1 : 1;
+      // jobTenuresCollection[info.education] = (jobTenuresCollection[info.education]) ? jobTenuresCollection[info.education] + 1 : 1;
       // jobTenuresCollection[info.company.industry] = (jobTenuresCollection[info.company.industry]) ? jobTenuresCollection[info.company.industry] + 1 : 1;
 
       // age
@@ -110,9 +116,9 @@ const genJobTenureSalaryChartData = (json) => {
         // get data type statistic
 
         // collect data of the same job-tenure & salary & age for bubble chart
-        const jobTenure = JobTenures[info.company.job_tenure];  // x
-        const salary = Salaries[info.company.salary];           // y
-        const curAgeDataset = ageDatasets[info.age];            // dataset
+        const jobTenure = JobTenures[info.company.job_tenure];              // x
+        const salary = Salaries[info.company.salary];                       // y
+        const curAgeDataset = ageDatasets[info.age] || ageDatasets['其他'];  // dataset
         let isNewXYCategory = true;
         // find the exist job-tenure & salary category
         curAgeDataset.forEach((data, idx) => {
@@ -138,9 +144,9 @@ const genJobTenureSalaryChartData = (json) => {
         // get data type statistic
 
         // collect data of the same job-tenure & salary & gender for bubble chart
-        const jobTenure = JobTenures[info.company.job_tenure];    // x
-        const salary = Salaries[info.company.salary];             // y
-        const curGenderDataset = genderDatasets[info.gender];     // dataset
+        const jobTenure = JobTenures[info.company.job_tenure];                          // x
+        const salary = Salaries[info.company.salary];                                   // y
+        const curGenderDataset = genderDatasets[info.gender] || genderDatasets['其他'];  // dataset
         let isNewXYCategory = true;
         // find the exist job-tenure & salary category
         curGenderDataset.forEach((data, idx) => {

@@ -8,7 +8,10 @@
       </ul>
     </header>
     <section>
-      <FrontEnd/>
+      <keep-alive>
+        <FrontEnd v-if="isFrontEndTab"/>
+        <ChartUI v-if="isUITab"/>
+      </keep-alive>
       <footer>Copyright © 2021 Crane。資料來源：<a href="https://github.com/hexschool/2021-ui-frontend-job" class="hover:underline">六角統計</a></footer>
     </section>
   </div>
@@ -18,11 +21,13 @@
 // @ is an alias to /src
 import { mapActions } from 'vuex';
 import FrontEnd from '@/components/FrontEnd.vue';
+import ChartUI from '@/components/ChartUI.vue';
 
 export default {
   name: 'Home',
   components: {
     FrontEnd,
+    ChartUI,
   },
   data() {
     return {
@@ -44,7 +49,6 @@ export default {
     changeTab(tab) {
       if (this.curTab !== tab) {
         this.curTab = tab;
-        // [UPDATE PAGE]
       }
     },
     ...mapActions(['startLoading', 'endLoading']),

@@ -51,7 +51,7 @@ import Dropdown from '@/components/Dropdown.vue';
 import { JobTenureSalaryDataTypesDD, JobTenureSalaryDataTypes } from '@/utils/enums';
 
 export default {
-  name: 'FrontEnd',
+  name: 'ChartUI',
   components: {
     Dropdown,
   },
@@ -71,7 +71,7 @@ export default {
     },
   },
   created() {
-    this.getData('frontend').then(() => {
+    this.getData('ui').then(() => {
       this.canvasDom = document.getElementById('myChart');
       this.chart = chartJobTenureVSSalary(this.canvasDom, this.curDatasets);
 
@@ -96,15 +96,15 @@ export default {
   computed: {
     curDatasets() {
       switch (this.selectedDataTypeID) {
-        case JobTenureSalaryDataTypes.AGE: return this.frontendSalariesForAge;
-        case JobTenureSalaryDataTypes.GENDER: return this.frontendSalariesForGender;
-        case JobTenureSalaryDataTypes.EDUCATION: return this.frontendSalariesForEducation;
-        case JobTenureSalaryDataTypes.INDUSTRY: return this.frontendSalariesForIndustry;
+        case JobTenureSalaryDataTypes.AGE: return this.uiSalariesForAge;
+        case JobTenureSalaryDataTypes.GENDER: return this.uiSalariesForGender;
+        case JobTenureSalaryDataTypes.EDUCATION: return this.uiSalariesForEducation;
+        case JobTenureSalaryDataTypes.INDUSTRY: return this.uiSalariesForIndustry;
         default: return {};
       }
     },
 
-    ...mapGetters('salary', ['frontendSalariesForAge', 'frontendSalariesForGender', 'frontendSalariesForEducation', 'frontendSalariesForIndustry', 'selectedInfo']),
+    ...mapGetters('salary', ['uiSalariesForAge', 'uiSalariesForGender', 'uiSalariesForEducation', 'uiSalariesForIndustry', 'selectedInfo']),
   },
 };
 </script>
