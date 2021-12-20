@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full container mx-auto flex-ctc">
+  <div class="w-full h-full container mx-auto p-2 flex-ctc">
     <!-- title -->
     <h1 class="w-full mt-8 py-4 font-bold text-2xl text-left">年資 vs 年薪</h1>
     <!-- description -->
@@ -98,11 +98,13 @@ export default {
       switch (this.selectedDataTypeID) {
         case JobTenureSalaryDataTypes.AGE: return this.frontendSalariesForAge;
         case JobTenureSalaryDataTypes.GENDER: return this.frontendSalariesForGender;
+        case JobTenureSalaryDataTypes.EDUCATION: return this.frontendSalariesForEducation;
+        case JobTenureSalaryDataTypes.INDUSTRY: return this.frontendSalariesForIndustry;
         default: return {};
       }
     },
 
-    ...mapGetters('salary', ['frontendSalariesForAge', 'frontendSalariesForGender', 'selectedInfo']),
+    ...mapGetters('salary', ['frontendSalariesForAge', 'frontendSalariesForGender', 'frontendSalariesForEducation', 'frontendSalariesForIndustry', 'selectedInfo']),
   },
 };
 </script>
