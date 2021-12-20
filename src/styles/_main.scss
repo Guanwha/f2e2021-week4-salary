@@ -9,6 +9,19 @@ html, body {
   padding: 0;
 }
 
+
+@mixin btn() {
+  @apply px-6;
+  @apply py-3;
+  @apply leading-none;
+  @apply text-base;
+  transition: all .15s ease;
+}
+.btn {
+  @include btn;
+  @apply rounded;
+}
+
 @mixin btn-tw($bg, $color, $hover-bg, $hover-color) {
   @apply cursor-pointer;
   @apply #{$bg};
@@ -65,9 +78,9 @@ html, body {
   }
 }
 
-// .btn-main {
-//   @include btn-tw(#{'bg-main-500'}, #{'text-dark-900'}, #{'bg-dark-900'}, #{'text-main-500'});
-// }
+.btn-main {
+  @include btn-tw(#{'bg-main-500'}, #{'text-word-800'}, #{'bg-main-400'}, #{'text-word-800'});
+}
 // .btn-dark {
 //   @include btn-tw(#{'bg-dark-900'}, #{'text-white'}, #{'bg-main-500'}, #{'text-dark-900'});
 // }
@@ -78,9 +91,14 @@ html, body {
 //   @include btn-tw-switch-color(#{'bg-dark-900'}, #{'text-white'}, #{'bg-main-500'}, #{'text-dark-900'});
 // }
 
-// .border-main {
-//   @apply border-2;
-//   @apply border-solid;
-//   @apply border-dark-900;
-//   @apply rounded-lg;
-// }
+
+.btn-main-outline {
+  @include btn-tw(#{'bg-white'}, #{'text-main-600'}, #{'bg-main-400'}, #{'text-main-600'});
+}
+
+.border-main {
+  @apply border;
+  @apply border-solid;
+  @apply border-main-600;
+  @apply rounded;
+}
