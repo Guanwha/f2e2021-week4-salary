@@ -3,7 +3,7 @@
 礙於時間關係，目前只有年資與年薪的關係圖，
 不過可以切換四種狀態(年齡、性別、學歷、產業)，觀看不同狀態下的年資年薪關係圖。
 
-## [Demo](https://guanwha.github.io/f2e2021-week4-salary/）
+## [Demo](https://guanwha.github.io/f2e2021-week4-salary)
 
 ## Features
 - 前端工程師 vs UI 設計師 分頁
