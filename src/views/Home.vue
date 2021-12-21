@@ -8,6 +8,7 @@
       </ul>
     </header>
     <section>
+      <div class="bg"></div>
       <keep-alive>
         <ChartFrontEnd v-if="isFrontEndTab"/>
         <ChartUI v-if="isUITab"/>
@@ -91,8 +92,17 @@ header {
 section {
   @apply overflow-auto;
   @apply flex-grow;
+  .bg {
+    content: '';
+    z-index: -1;
+    @apply absolute inset-0;
+    background-image: url('../assets/bg-home.jpeg');
+    background-size: cover;
+    @apply opacity-10;
+  }
 }
 footer {
+  @apply mt-16;
   @apply p-4;
   @apply bg-main-500;
   @apply text-word-800;

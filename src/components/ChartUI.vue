@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full container mx-auto p-2 flex-ctc">
+  <div class="w-full container mx-auto p-2 flex-ctc">
     <!-- title -->
     <h1 class="w-full mt-8 py-4 font-bold text-2xl text-left">年資 vs 年薪</h1>
     <!-- description -->
@@ -15,13 +15,13 @@
                 v-model.number='selectedDataTypeID' :types='types'/>
     </div>
     <!-- chart -->
-    <div class="mt-2 w-full h-96 bg-gray-50 shadow rounded p-4">
+    <div class="mt-2 w-full h-3/5 bg-white shadow rounded p-4">
       <div class="w-full h-full">
         <canvas id="myChart" class="w-full h-full"></canvas>
       </div>
     </div>
     <!-- message -->
-    <div v-for="(infosets, key) in selectedInfo" :key="key">
+    <div class="mt-8" v-for="(infosets, key) in selectedInfo" :key="key">
       <div>{{ key }}</div>
       <table class="border border-gray-300 gap-1">
         <thead>
