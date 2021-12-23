@@ -17,7 +17,11 @@
         <ChartFrontEnd v-if="isFrontEndTab"/>
         <ChartUI v-if="isUITab"/>
       </keep-alive>
-      <footer>Copyright © 2021 Crane。資料來源：<a href="https://github.com/hexschool/2021-ui-frontend-job" class="hover:underline">六角統計</a></footer>
+      <footer>
+        <span>Copyright © 2021 Crane</span>
+        <span class="hidden sm:inline">。</span>
+        <span>資料來源：<a href="https://github.com/hexschool/2021-ui-frontend-job" class="hover:underline">六角統計</a></span>
+      </footer>
     </section>
   </div>
 </template>
@@ -110,5 +114,6 @@ footer {
   @apply p-4;
   @apply bg-main-500;
   @apply text-word-800;
+  @apply flex-ccc sm:flex-rcc;
 }
 </style>
