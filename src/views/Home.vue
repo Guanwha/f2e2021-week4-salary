@@ -2,12 +2,17 @@
   <div class="h-full flex-css">
     <header>
       <div>2021 薪資統計分析</div>
-      <ul>
+      <ul class="sm:hidden">
+        <li @click="changeTab('frontend')" :class="(isFrontEndTab) ? 'active' : ''">前端</li>
+        <li @click="changeTab('ui')" :class="(isUITab) ? 'active' : ''">UI</li>
+      </ul>
+      <ul class="hidden sm:flex">
         <li @click="changeTab('frontend')" :class="(isFrontEndTab) ? 'active' : ''">前端工程師</li>
         <li @click="changeTab('ui')" :class="(isUITab) ? 'active' : ''">UI 設計師</li>
       </ul>
     </header>
     <section>
+      <div class="bg"></div>
       <keep-alive>
         <ChartFrontEnd v-if="isFrontEndTab"/>
         <ChartUI v-if="isUITab"/>
@@ -68,14 +73,14 @@ header {
   @apply text-word-800;
   @apply text-xl font-bold;
   @apply shadow;
-  @apply flex-rlc;
+  @apply flex-rsbc sm:flex-rlc;
   ul {
-    @apply ml-8;
-    @apply flex-rlc;
+    @apply ml-0 sm:ml-8;
+    @apply flex-rcc sm:flex-rlc;
     @apply gap-1;
   }
   li {
-    @apply px-4 py-3;
+    @apply px-2 py-2 sm:px-4 sm:py-3;
     @apply rounded;
     @apply hover:bg-main-400;
     @apply text-base;
@@ -91,8 +96,17 @@ header {
 section {
   @apply overflow-auto;
   @apply flex-grow;
+  .bg {
+    content: '';
+    z-index: -1;
+    @apply absolute inset-0;
+    background-image: url('../assets/bg-home.jpeg');
+    background-size: cover;
+    @apply opacity-10;
+  }
 }
 footer {
+  @apply mt-16;
   @apply p-4;
   @apply bg-main-500;
   @apply text-word-800;

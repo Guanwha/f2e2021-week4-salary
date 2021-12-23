@@ -48,8 +48,11 @@ const chartJobTenureVSSalary = (dom, datasets) => {
           y: {
             suggestedMin: 20,
             ticks: {
+              beginAtZero: true,
               // For a category axis, the val is the index so the lookup via getLabelForValue is needed
-              callback(val) { return `${this.getLabelForValue(val)} 萬`; },
+              callback(val) {
+                return `${this.getLabelForValue(Math.floor(val))} 萬`;
+              },
             },
             title: {
               display: true,

@@ -1,12 +1,14 @@
 <template>
-  <div class="w-full h-full container mx-auto p-2 flex-ctc">
+  <div class="w-full container mx-auto p-2 flex-ctc">
     <!-- title -->
     <h1 class="w-full mt-8 py-4 font-bold text-2xl text-left">年資 vs 年薪</h1>
     <!-- description -->
     <p class="w-full text-left">檢視在不同的年齡、性別、學歷、產業下，前端工程師年資與年薪的關係。</p>
     <!-- control -->
-    <div class="w-full flex-rrc">
-      <button type="button" class="btn btn-main-outline border-main flex-ccc" @click="resetZoom()">重置縮放</button>
+    <div class="mt-4 w-full flex-rrc">
+      <button type="button" class="btn-icon btn-main-outline border-main flex-ccc" @click="resetZoom()">
+        <img src="@/assets/icon_scale_fit.svg" alt="重置縮放">
+      </button>
       <Dropdown class="ml-2"
                 classPadding="px-4 py-3"
                 classBorder="border-main"
@@ -15,13 +17,13 @@
                 v-model.number='selectedDataTypeID' :types='types'/>
     </div>
     <!-- chart -->
-    <div class="mt-2 w-full h-96 bg-gray-50 shadow rounded p-4">
-      <div class="w-full h-full">
+    <div class="mt-2 w-full h-3/5 min-h-96 bg-white shadow rounded p-4">
+      <div class="w-full h-full min-h-96">
         <canvas id="myChart" class="w-full h-full"></canvas>
       </div>
     </div>
     <!-- message -->
-    <div v-for="(infosets, key) in selectedInfo" :key="key">
+    <div class="mt-8" v-for="(infosets, key) in selectedInfo" :key="key">
       <div>{{ key }}</div>
       <table class="border border-gray-300 gap-1">
         <thead>
