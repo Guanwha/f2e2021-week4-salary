@@ -560,6 +560,7 @@ module.exports = {
     },
     minWidth: {
       0: '0px',
+      80: '20rem',
       full: '100%',
       min: 'min-content',
       max: 'max-content',
