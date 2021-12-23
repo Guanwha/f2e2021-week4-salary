@@ -7,7 +7,7 @@
     <div>
       <span class="rounded shadow-sm">
         <button type="button" id="options-menu" aria-haspopup="true" aria-expanded="true"
-                class="flex-rcc w-full rounded text-xs md:text-base leading-none focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150"
+                class="flex-rcc w-full rounded text-base leading-none focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150"
                 :class="[classPadding, classBorder, classBgTextColor]"
                 @click='isOpen = !isOpen'>
           <span v-if='types && types[curTypeID]'>{{ types[curTypeID].name }}</span>
@@ -116,7 +116,7 @@ export default {
 <style lang="scss">
 .option {
   @apply block;
-  @apply text-xs md:text-base;
+  @apply text-base;
   @apply leading-none;
   @apply focus:outline-none;
   @apply select-none;
