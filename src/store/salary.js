@@ -6,8 +6,8 @@ import { axiosThen } from '@/utils/net';
 import * as types from './types';
 import { genJobTenureSalaryChartData } from '@/utils/gen-chart-data';
 
-const jsonFE = require('@/utils/data-frontend.json');
-const jsonUI = require('@/utils/data-ui.json');
+// const jsonFE = require('@/utils/data-frontend.json');
+// const jsonUI = require('@/utils/data-ui.json');
 
 /** salary  */
 export default {
@@ -41,11 +41,11 @@ export default {
             // success
             let payload = null;
             if (job === 'frontend') {
-              payload = genJobTenureSalaryChartData(jsonFE);
+              payload = genJobTenureSalaryChartData(response.data);
               context.commit(types.salary.SET_FE_SALARY, payload);
             }
             else {
-              payload = genJobTenureSalaryChartData(jsonUI);
+              payload = genJobTenureSalaryChartData(response.data);
               context.commit(types.salary.SET_UI_SALARY, payload);
             }
             log('取得前端工程師薪水統計成功');
@@ -65,27 +65,6 @@ export default {
         }).finally(() => {
           context.dispatch('endLoading', null, { root: true });
         });
-
-        // let payload = null;
-        // try {
-        //   if (job === 'frontend') {
-        //     payload = genJobTenureSalaryChartData(jsonFE);
-        //     context.commit(types.salary.SET_FE_SALARY, payload);
-        //   }
-        //   else {
-        //     payload = genJobTenureSalaryChartData(jsonUI);
-        //     context.commit(types.salary.SET_UI_SALARY, payload);
-        //   }
-        //   resolve();
-        // }
-        // catch (error) {
-        //   // logCatch('發生錯誤: ', error.getMessage());
-        //   console.log(error);
-        //   reject();
-        // }
-        // finally {
-        //   context.dispatch('endLoading', null, { root: true });
-        // }
       });
     },
     setSelectedInfo(context, payload) {
